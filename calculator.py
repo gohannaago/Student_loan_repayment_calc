@@ -6,7 +6,7 @@ from header import yn_to_bool, calc
 
 # Initialize variables
 # List that appends payments
-payments = []
+payments = 0
 # threshold values hardcoded for each plan
 th_1 = 19895
 th_2 = 27295
@@ -31,14 +31,13 @@ bool_p = yn_to_bool("Are you on Postgraduate Loan repayment plan? Answer either 
 
 # Calculate for each plan
 if bool_1:
-    payments.append(calc(income, th_1, rate))
-if bool_2:
-    payments.append(calc(income, th_2, rate))
-if bool_4:
-    payments.append(calc(income, th_4, rate))
+    payments += calc(income, th_1, rate)
+elif bool_4:
+    payments += calc(income, th_4, rate)
+elif bool_2:
+    payments += calc(income, th_2, rate)
+    
 if bool_p:
-    payments.append(calc(income, th_p, rate_p))
+    payments += calc(income, th_p, rate_p)
 
-total = sum(payments)
-
-print(f"You will repay total of £{total} per month. ")
+print(f"You will repay total of {payments} per month. ")
